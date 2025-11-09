@@ -6,6 +6,57 @@
     <title>Database Coordinator Portfolio</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define Inter Font for a modern look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom styles, smooth scrolling, and scroll reveal animation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section Header Underline Style */
+        .section-header {
+            position: relative;
+            display: inline-block;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40%; /* Slightly shorter underline */
+            height: 4px;
+            background-color: #1d4ed8; /* Blue-700 accent */
+            border-radius: 9999px;
+        }
+
+        /* Scroll Reveal Animation Styles */
+        .hidden-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu Transition for Smoothness */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+        }
+        #mobile-menu.open {
+            max-height: 500px; /* Sufficient height to cover all links */
+            opacity: 1;
+        }
+    </style>
     <!-- Load Lucide Icons -->
     <script type="module">
         import { icons } from 'https://cdn.skypack.dev/lucide';
@@ -25,110 +76,95 @@
             replaceIcons(document.body);
         });
     </script>
-    <style>
-        /* Custom styles and smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        .section-header {
-            position: relative;
-            display: inline-block;
-        }
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50%;
-            height: 4px;
-            background-color: #3b82f6; /* Blue-500 */
-            border-radius: 9999px;
-        }
-    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+<body class="bg-gray-100 text-gray-800 font-sans leading-relaxed">
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
+    <!-- Navigation Header (Sticky and dynamic shadow) -->
+    <header id="main-header" class="sticky top-0 z-50 bg-white transition duration-300">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-gray-900 tracking-tight hover:text-blue-600 transition duration-300">
-                DataFlow Coordinator
+            <a href="#hero" class="text-2xl font-extrabold text-gray-900 tracking-tight hover:text-blue-700 transition duration-300">
+                Nitesh Verma <span class="text-blue-500 text-base font-medium">| Data Coordinator</span>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">About</a>
-                <a href="#skills" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">Skills</a>
-                <a href="#experience" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">Experience</a>
-                <a href="#projects" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">Projects</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300 font-medium">Contact</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-700 transition duration-300 font-medium">About</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-700 transition duration-300 font-medium">Skills</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-700 transition duration-300 font-medium">Experience</a>
+                <a href="#projects" class="text-gray-600 hover:text-blue-700 transition duration-300 font-medium">Projects</a>
+                <a href="#contact" class="text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 font-medium shadow-md">Contact</a>
             </div>
             <!-- Mobile Menu Button (Hamburger) -->
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:text-blue-600 transition duration-300">
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-blue-700 transition duration-300 focus:outline-none">
                 <svg data-lucide="menu" data-lucide-size="28"></svg>
             </button>
         </nav>
         <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t">
-            <a href="#about" class="block px-4 py-3 text-gray-800 hover:bg-blue-50">About</a>
-            <a href="#skills" class="block px-4 py-3 text-gray-800 hover:bg-blue-50">Skills</a>
-            <a href="#experience" class="block px-4 py-3 text-gray-800 hover:bg-blue-50">Experience</a>
-            <a href="#projects" class="block px-4 py-3 text-gray-800 hover:bg-blue-50">Projects</a>
-            <a href="#contact" class="block px-4 py-3 text-gray-800 hover:bg-blue-50">Contact</a>
+        <div id="mobile-menu" class="md:hidden bg-white border-t">
+            <a href="#about" class="block px-4 py-3 text-gray-800 hover:bg-blue-50" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+            <a href="#skills" class="block px-4 py-3 text-gray-800 hover:bg-blue-50" onclick="document.getElementById('mobile-menu').classList.remove('open')">Skills</a>
+            <a href="#experience" class="block px-4 py-3 text-gray-800 hover:bg-blue-50" onclick="document.getElementById('mobile-menu').classList.remove('open')">Experience</a>
+            <a href="#projects" class="block px-4 py-3 text-gray-800 hover:bg-blue-50" onclick="document.getElementById('mobile-menu').classList.remove('open')">Projects</a>
+            <a href="#contact" class="block px-4 py-3 text-blue-600 font-semibold hover:bg-blue-50" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
         </div>
     </header>
 
     <main>
         <!-- 1. Hero Section -->
-        <section id="hero" class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white py-20 md:py-32">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-10">
-                <div class="md:w-3/5 text-center md:text-left">
-                    <p class="text-xl opacity-80 mb-2">Hello, I'm Alex Johnson</p>
-                    <h1 class="text-4xl sm:text-6xl font-extrabold mb-4 leading-tight">
-                        Database <span class="text-yellow-200">Coordinator</span> & Data Integrity Specialist
+        <section id="hero" class="bg-gradient-to-br from-blue-700 to-indigo-800 text-white py-24 md:py-40 border-b-4 border-blue-500">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-3/5 text-center md:text-left hidden-element fade-in">
+                    <p class="text-xl opacity-80 mb-3 font-light">Hello, I'm Alex Johnson</p>
+                    <h1 class="text-5xl sm:text-7xl font-extrabold mb-5 leading-tight tracking-tighter">
+                        Database <span class="text-yellow-300">Coordination</span> & Integrity
                     </h1>
-                    <p class="text-lg md:text-xl opacity-90 mb-8 max-w-xl mx-auto md:mx-0">
+                    <p class="text-lg md:text-xl opacity-90 mb-10 max-w-xl mx-auto md:mx-0">
                         Bridging the gap between technical database operations and organizational data strategy to ensure accuracy, security, and accessibility.
                     </p>
-                    <a href="#contact" class="inline-flex items-center bg-white text-blue-600 font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
-                        <svg data-lucide="mail" data-lucide-size="20" class="mr-2"></svg>
-                        Get in Touch
+                    <a href="#contact" class="inline-flex items-center bg-yellow-400 text-gray-900 font-bold px-8 py-4 rounded-xl shadow-xl hover:bg-yellow-300 transition duration-300 transform hover:scale-105 hover:shadow-2xl">
+                        <svg data-lucide="send" data-lucide-size="20" class="mr-3"></svg>
+                        Request Resume
                     </a>
                 </div>
-                <div class="md:w-2/5 flex justify-center">
-                    <!-- Placeholder for Professional Photo -->
-                    <div class="w-64 h-64 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-white overflow-hidden">
-                        <svg data-lucide="user" data-lucide-size="96" class="text-blue-500"></svg>
-                        <!-- In a real site, replace this SVG with an image: <img src="[Your Photo URL]" alt="Alex Johnson Professional Photo" class="w-full h-full object-cover"> -->
-                        
+                <div class="md:w-2/5 flex justify-center hidden-element fade-in" style="transition-delay: 0.2s;">
+                    <!-- Professional Photo Placeholder (Enhanced visually) -->
+                    <div class="w-64 h-64 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-yellow-300 overflow-hidden transform hover:scale-105 transition duration-500">
+                        <svg data-lucide="user" data-lucide-size="96" class="text-blue-700"></svg>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 2. About Me -->
-        <section id="about" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold mb-10 section-header">About Me</h2>
-                <div class="grid md:grid-cols-2 gap-12 items-start">
-                    <div>
+        <section id="about" class="py-20 md:py-32 bg-white hidden-element">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+                <h2 class="text-4xl font-bold mb-12 section-header">About Me</h2>
+                <div class="grid md:grid-cols-3 gap-12 items-start">
+                    <div class="md:col-span-2">
                         <p class="text-gray-700 mb-6 text-lg">
-                            With over 7 years of experience in data management, my focus is on ensuring databases serve as reliable, high-performing assets for the entire organization. As a Database Coordinator, I specialize in the operational planning, governance, and cross-departmental alignment necessary to maintain data quality and compliance.
+                            With over **7 years of experience** in data management, my focus is on ensuring databases serve as reliable, high-performing assets for the entire organization. As a Database Coordinator, I specialize in the operational planning, governance, and cross-departmental alignment necessary to maintain data quality and compliance.
                         </p>
                         <p class="text-gray-700 mb-6 text-lg">
                             I excel at translating complex technical requirements into clear, actionable strategies for both technical teams and business stakeholders. My expertise spans system architecture, security implementation (HIPAA, GDPR), disaster recovery planning, and optimizing query performance for critical business applications.
                         </p>
-                        <div class="flex space-x-6">
-                            <div class="flex items-center text-blue-600 font-semibold">
-                                <svg data-lucide="database" data-lucide-size="20" class="mr-2"></svg>
+                        <div class="flex flex-wrap gap-x-8 gap-y-3 pt-4">
+                            <span class="flex items-center text-blue-600 font-semibold bg-blue-50 px-3 py-1 rounded-full text-sm">
+                                <svg data-lucide="database" data-lucide-size="18" class="mr-2"></svg>
                                 Data Governance
-                            </div>
-                            <div class="flex items-center text-blue-600 font-semibold">
-                                <svg data-lucide="shield-check" data-lucide-size="20" class="mr-2"></svg>
+                            </span>
+                            <span class="flex items-center text-blue-600 font-semibold bg-blue-50 px-3 py-1 rounded-full text-sm">
+                                <svg data-lucide="shield-check" data-lucide-size="18" class="mr-2"></svg>
                                 Security & Compliance
-                            </div>
+                            </span>
+                            <span class="flex items-center text-blue-600 font-semibold bg-blue-50 px-3 py-1 rounded-full text-sm">
+                                <svg data-lucide="workflow" data-lucide-size="18" class="mr-2"></svg>
+                                Workflow Optimization
+                            </span>
                         </div>
                     </div>
-                    <div class="p-6 bg-blue-50 rounded-xl shadow-inner border border-blue-200">
-                        <h3 class="text-2xl font-semibold text-blue-700 mb-4">Core Philosophy</h3>
+                    <div class="p-8 bg-blue-50 rounded-xl shadow-lg border border-blue-200">
+                        <h3 class="text-2xl font-semibold text-blue-700 mb-4 flex items-center">
+                            <svg data-lucide="lightbulb" data-lucide-size="24" class="mr-2 text-yellow-500"></svg>
+                            Core Philosophy
+                        </h3>
                         <blockquote class="italic text-gray-600 border-l-4 border-blue-400 pl-4">
                             "Data is not just stored; it's managed, protected, and utilized as a strategic asset. My role is to coordinate the people, processes, and technology to make that happen reliably, every day."
                         </blockquote>
@@ -138,50 +174,50 @@
         </section>
 
         <!-- 3. Technical Skills -->
-        <section id="skills" class="py-16 md:py-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold mb-10 section-header">Skills & Technologies</h2>
+        <section id="skills" class="py-20 md:py-32 bg-gray-50 hidden-element">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+                <h2 class="text-4xl font-bold mb-12 section-header">Skills & Technologies</h2>
 
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Databases & Management -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-blue-500">
+                    <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-blue-300/50 transition duration-500 border-t-8 border-blue-600 transform hover:-translate-y-1">
                         <h3 class="text-xl font-bold mb-3 text-gray-900 flex items-center">
-                            <svg data-lucide="server" data-lucide-size="24" class="mr-2 text-blue-500"></svg>
+                            <svg data-lucide="server" data-lucide-size="28" class="mr-3 text-blue-600"></svg>
                             Database Systems
                         </h3>
-                        <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                        <ul class="list-none text-gray-700 space-y-2 text-sm">
                             <li>**RDBMS:** PostgreSQL, SQL Server, MySQL, Oracle</li>
                             <li>**NoSQL:** MongoDB, Redis, Cassandra</li>
                             <li>**Cloud:** AWS RDS, Azure SQL Database, GCP Cloud SQL</li>
-                            <li>**Tools:** SSMS, pgAdmin, DBeaver</li>
+                            <li>**Tools:** SSMS, pgAdmin, DBeaver, Toad</li>
                         </ul>
                     </div>
 
                     <!-- Data Coordination & Processes -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-indigo-500">
+                    <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-indigo-300/50 transition duration-500 border-t-8 border-indigo-600 transform hover:-translate-y-1" style="transition-delay: 0.1s;">
                         <h3 class="text-xl font-bold mb-3 text-gray-900 flex items-center">
-                            <svg data-lucide="git-pull-request-draft" data-lucide-size="24" class="mr-2 text-indigo-500"></svg>
+                            <svg data-lucide="git-pull-request-draft" data-lucide-size="28" class="mr-3 text-indigo-600"></svg>
                             Coordination & ETL
                         </h3>
-                        <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                        <ul class="list-none text-gray-700 space-y-2 text-sm">
                             <li>Data Modeling (3NF, Dimensional)</li>
-                            <li>ETL/ELT Pipeline Design (Airflow, Talend)</li>
+                            <li>ETL/ELT Pipeline Design (Airflow, Talend, SSIS)</li>
                             <li>Data Migration & Integration Strategy</li>
-                            <li>Database Security & Access Control</li>
+                            <li>Database Security & Access Control (RBAC)</li>
                         </ul>
                     </div>
 
                     <!-- Development & Reporting -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-green-500">
+                    <div class="bg-white p-6 rounded-xl shadow-2xl hover:shadow-green-300/50 transition duration-500 border-t-8 border-green-600 transform hover:-translate-y-1" style="transition-delay: 0.2s;">
                         <h3 class="text-xl font-bold mb-3 text-gray-900 flex items-center">
-                            <svg data-lucide="code" data-lucide-size="24" class="mr-2 text-green-500"></svg>
+                            <svg data-lucide="code" data-lucide-size="28" class="mr-3 text-green-600"></svg>
                             Languages & Reporting
                         </h3>
-                        <ul class="list-disc ml-5 text-gray-700 space-y-1">
+                        <ul class="list-none text-gray-700 space-y-2 text-sm">
                             <li>Advanced SQL (Stored Procedures, Views, Triggers)</li>
-                            <li>Python (Pandas, SQL Alchemy)</li>
+                            <li>Python (Pandas, SQL Alchemy, Data Validation)</li>
                             <li>T-SQL / PL/SQL Scripting</li>
-                            <li>Reporting (Tableau, Power BI, SSRS)</li>
+                            <li>Reporting (Tableau, Power BI, SSRS, Dashboarding)</li>
                         </ul>
                     </div>
                 </div>
@@ -189,35 +225,35 @@
         </section>
 
         <!-- 4. Professional Experience -->
-        <section id="experience" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold mb-10 section-header">Professional Experience</h2>
+        <section id="experience" class="py-20 md:py-32 bg-white hidden-element">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+                <h2 class="text-4xl font-bold mb-12 section-header">Professional Experience</h2>
 
                 <div class="space-y-12">
                     <!-- Job 1 -->
-                    <div class="relative pl-8 sm:pl-16 border-l-4 border-blue-300">
-                        <div class="absolute left-[-10px] sm:left-[-22px] w-5 h-5 bg-blue-500 rounded-full ring-8 ring-blue-100"></div>
-                        <p class="text-sm text-gray-500 mb-1">2021 – Present</p>
+                    <div class="relative p-6 bg-gray-50 rounded-xl shadow-lg border border-gray-200">
+                        <div class="absolute -left-3 -top-3 w-6 h-6 bg-blue-600 rounded-full ring-8 ring-white"></div>
+                        <p class="text-sm text-gray-500 mb-1 font-mono">2021 – Present</p>
                         <h3 class="text-2xl font-bold text-gray-900">Senior Database Coordinator</h3>
-                        <p class="text-lg font-semibold text-blue-600 mb-4">TechSolutions Global | New York, NY</p>
+                        <p class="text-lg font-semibold text-blue-700 mb-4">TechSolutions Global | New York, NY</p>
                         <ul class="list-disc ml-5 text-gray-700 space-y-3">
-                            <li>Led the migration of 12 critical SQL Server databases to AWS RDS, resulting in a 30% reduction in operational overhead and improved scalability.</li>
-                            <li>Established a formal Data Governance committee, standardizing data definitions and access protocols across Finance, Sales, and Operations departments.</li>
-                            <li>Coordinated with application development teams to optimize over 50 complex stored procedures, reducing average query execution time by 45%.</li>
-                            <li>Implemented a multi-region disaster recovery plan using log shipping, achieving a consistent RTO of under 4 hours.</li>
+                            <li>**Leadership & Cloud Migration:** Led the migration of 12 critical SQL Server databases to **AWS RDS**, resulting in a 30% reduction in operational overhead and improved scalability.</li>
+                            <li>**Data Governance:** Established a formal Data Governance committee, standardizing data definitions and access protocols across Finance, Sales, and Operations departments.</li>
+                            <li>**Performance Coordination:** Coordinated with application development teams to optimize over 50 complex stored procedures, reducing average query execution time by **45%**.</li>
+                            <li>**Disaster Recovery:** Implemented a multi-region disaster recovery plan using log shipping, achieving a consistent RTO of under 4 hours.</li>
                         </ul>
                     </div>
 
                     <!-- Job 2 -->
-                    <div class="relative pl-8 sm:pl-16 border-l-4 border-blue-300">
-                        <div class="absolute left-[-10px] sm:left-[-22px] w-5 h-5 bg-blue-500 rounded-full ring-8 ring-blue-100"></div>
-                        <p class="text-sm text-gray-500 mb-1">2018 – 2021</p>
+                    <div class="relative p-6 bg-gray-50 rounded-xl shadow-lg border border-gray-200">
+                        <div class="absolute -left-3 -top-3 w-6 h-6 bg-blue-600 rounded-full ring-8 ring-white"></div>
+                        <p class="text-sm text-gray-500 mb-1 font-mono">2018 – 2021</p>
                         <h3 class="text-2xl font-bold text-gray-900">Junior Data Specialist</h3>
-                        <p class="text-lg font-semibold text-blue-600 mb-4">Financial Dynamics Inc. | Boston, MA</p>
+                        <p class="text-lg font-semibold text-blue-700 mb-4">Financial Dynamics Inc. | Boston, MA</p>
                         <ul class="list-disc ml-5 text-gray-700 space-y-3">
-                            <li>Managed daily backups, restores, and patching for a high-availability PostgreSQL cluster supporting real-time trading platforms.</li>
-                            <li>Developed and maintained Python scripts for automated data validation and report generation, saving the BI team 10 hours per week.</li>
-                            <li>Assisted in the implementation of security patches and conducted regular vulnerability assessments in line with regulatory requirements.</li>
+                            <li>**Operations:** Managed daily backups, restores, and patching for a high-availability PostgreSQL cluster supporting real-time trading platforms.</li>
+                            <li>**Automation:** Developed and maintained **Python scripts** for automated data validation and report generation, saving the BI team 10 hours per week.</li>
+                            <li>**Security:** Assisted in the implementation of security patches and conducted regular vulnerability assessments in line with regulatory requirements.</li>
                         </ul>
                     </div>
                 </div>
@@ -225,40 +261,40 @@
         </section>
 
         <!-- 5. Key Projects/Coordination Examples -->
-        <section id="projects" class="py-16 md:py-24 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold mb-10 section-header">Coordination Case Studies</h2>
+        <section id="projects" class="py-20 md:py-32 bg-gray-100 hidden-element">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+                <h2 class="text-4xl font-bold mb-12 section-header">Coordination Case Studies</h2>
 
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="grid md:grid-cols-2 gap-10">
                     <!-- Project 1: Data Standardization -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+                    <div class="bg-white p-8 rounded-2xl shadow-2xl border-l-8 border-green-500 transform hover:scale-[1.02] transition duration-500">
                         <div class="flex items-center mb-4">
-                            <svg data-lucide="check-square" data-lucide-size="28" class="text-green-600 mr-3"></svg>
-                            <h3 class="text-xl font-bold text-gray-900">Cross-System Data Standardization Initiative</h3>
+                            <svg data-lucide="trello" data-lucide-size="32" class="text-green-600 mr-4"></svg>
+                            <h3 class="text-2xl font-bold text-gray-900">Master Data Standardization Initiative</h3>
                         </div>
                         <p class="text-gray-600 mb-4">
-                            **Objective:** Resolve inconsistencies in customer records across CRM, ERP, and internal billing systems.
+                            **Challenge:** Resolve inconsistencies in customer records across CRM, ERP, and internal billing systems.
                         </p>
-                        <ul class="list-disc ml-5 text-sm text-gray-700 space-y-1">
-                            <li>**Coordination:** Facilitated workshops with three departmental heads to define a "Single Source of Truth" for key data elements (e.g., Address, Status).</li>
-                            <li>**Technical Solution:** Designed and deployed a Master Data Management (MDM) process using a central PostgreSQL database for reconciliation.</li>
-                            <li>**Result:** Reduced data entry errors by 22% and enabled accurate, consolidated executive reporting for the first time.</li>
+                        <ul class="list-disc ml-5 text-gray-700 space-y-2">
+                            <li>**Coordination:** Facilitated workshops with **three departmental heads** to define a "Single Source of Truth" for key data elements (e.g., Address, Status).</li>
+                            <li>**Technical Solution:** Designed and deployed a **Master Data Management (MDM)** process using a central PostgreSQL database for reconciliation.</li>
+                            <li>**Impact:** Reduced data entry errors by **22%** and enabled accurate, consolidated executive reporting.</li>
                         </ul>
                     </div>
 
                     <!-- Project 2: Compliance and Audit -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+                    <div class="bg-white p-8 rounded-2xl shadow-2xl border-l-8 border-red-500 transform hover:scale-[1.02] transition duration-500" style="transition-delay: 0.1s;">
                         <div class="flex items-center mb-4">
-                            <svg data-lucide="lock" data-lucide-size="28" class="text-red-600 mr-3"></svg>
-                            <h3 class="text-xl font-bold text-gray-900">GDPR Compliance & Security Audit</h3>
+                            <svg data-lucide="shield-lock" data-lucide-size="32" class="text-red-600 mr-4"></svg>
+                            <h3 class="text-2xl font-bold text-gray-900">GDPR Compliance & Security Audit</h3>
                         </div>
                         <p class="text-gray-600 mb-4">
-                            **Objective:** Ensure all European customer data handling practices were fully compliant with GDPR requirements ahead of an external audit.
+                            **Challenge:** Ensure all European customer data handling practices were fully compliant with GDPR requirements.
                         </p>
-                        <ul class="list-disc ml-5 text-sm text-gray-700 space-y-1">
-                            <li>**Coordination:** Wrote and disseminated training materials for 40+ staff members on new data handling protocols.</li>
-                            <li>**Technical Solution:** Implemented role-based access control (RBAC) and data masking techniques on all non-production environments to protect PII.</li>
-                            <li>**Result:** The organization passed the external audit with zero major deficiencies related to data storage and access.</li>
+                        <ul class="list-disc ml-5 text-gray-700 space-y-2">
+                            <li>**Coordination:** Wrote and disseminated training materials for **40+ staff members** on new data handling protocols and requirements.</li>
+                            <li>**Technical Solution:** Implemented **role-based access control (RBAC)** and advanced data masking techniques on all non-production environments.</li>
+                            <li>**Impact:** The organization passed the external audit with **zero major deficiencies** related to data storage and access.</li>
                         </ul>
                     </div>
                 </div>
@@ -266,34 +302,34 @@
         </section>
 
         <!-- 6. Contact Section -->
-        <section id="contact" class="py-16 md:py-24 bg-blue-700 text-white">
-            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-4xl font-bold mb-4">Let's Connect</h2>
-                <p class="text-blue-200 mb-10 text-lg">
-                    I am currently open to new opportunities focused on complex data coordination and robust database management.
+        <section id="contact" class="py-20 md:py-32 bg-blue-700 text-white border-t-4 border-yellow-400">
+            <div class="max-w-xl mx-auto px-6 sm:px-8 lg:px-10 text-center hidden-element">
+                <h2 class="text-4xl font-bold mb-6">Let's Connect</h2>
+                <p class="text-blue-200 mb-10 text-xl font-light">
+                    I am currently open to new opportunities focused on complex data coordination, governance, and robust cloud database management.
                 </p>
 
                 <div class="space-y-6">
                     <!-- Email and Phone -->
                     <div class="flex items-center justify-center space-x-4">
-                        <svg data-lucide="mail" data-lucide-size="24" class="text-blue-300"></svg>
-                        <a href="mailto:alex.coordinator@example.com" class="text-xl text-white hover:text-blue-200 transition duration-300">alex.coordinator@example.com</a>
+                        <svg data-lucide="mail" data-lucide-size="28" class="text-yellow-400"></svg>
+                        <a href="mailto:alex.coordinator@example.com" class="text-2xl text-white font-semibold hover:text-yellow-300 transition duration-300">alex.coordinator@example.com</a>
                     </div>
                     <div class="flex items-center justify-center space-x-4">
-                        <svg data-lucide="phone" data-lucide-size="24" class="text-blue-300"></svg>
-                        <span class="text-xl">(555) 123-4567</span>
+                        <svg data-lucide="phone" data-lucide-size="28" class="text-yellow-400"></svg>
+                        <span class="text-2xl font-semibold">+91-7275237124</span>
                     </div>
 
                     <!-- Social/Professional Links -->
-                    <div class="flex justify-center space-x-8 pt-4">
-                        <a href="#" target="_blank" class="text-white hover:text-blue-300 transition duration-300">
-                            <svg data-lucide="linkedin" data-lucide-size="32"></svg>
+                    <div class="flex justify-center space-x-10 pt-8">
+                        <a href="#" target="_blank" class="text-white hover:text-yellow-400 transition duration-300 transform hover:scale-110">
+                            <svg data-lucide="linkedin" data-lucide-size="36"></svg>
                         </a>
-                        <a href="#" target="_blank" class="text-white hover:text-blue-300 transition duration-300">
-                            <svg data-lucide="github" data-lucide-size="32"></svg>
+                        <a href="#" target="_blank" class="text-white hover:text-yellow-400 transition duration-300 transform hover:scale-110">
+                            <svg data-lucide="github" data-lucide-size="36"></svg>
                         </a>
-                        <a href="#" target="_blank" class="text-white hover:text-blue-300 transition duration-300">
-                            <svg data-lucide="file-text" data-lucide-size="32"></svg>
+                        <a href="#" target="_blank" class="text-white hover:text-yellow-400 transition duration-300 transform hover:scale-110">
+                            <svg data-lucide="file-text" data-lucide-size="36"></svg>
                         </a>
                     </div>
                 </div>
@@ -301,29 +337,87 @@
         </section>
     </main>
 
+    <!-- Back to Top Button (Hidden by default) -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 transition duration-300 z-50 hover:bg-blue-700 transform hover:scale-110">
+        <svg data-lucide="arrow-up" data-lucide-size="24"></svg>
+    </button>
+
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-            &copy; 2025 Alex Johnson | Database Coordinator Portfolio. Built with Tailwind CSS.
+    <footer class="bg-gray-800 text-white py-6 border-t-2 border-gray-700">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 text-center text-sm">
+            &copy; 2025 Nitesh Verma | Database Coordinator Portfolio.
         </div>
     </footer>
 
     <script>
-        // JavaScript for mobile menu toggle and smooth scrolling
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const header = document.getElementById('main-header');
+            const backToTopButton = document.getElementById('back-to-top');
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Hide mobile menu when a link is clicked
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+            // 1. Mobile Menu Toggle with CSS Transition
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
             });
-        });
 
+            // 2. Scroll Effects (Header Shadow and Back to Top Button)
+            const handleScrollEffects = () => {
+                // Header Shadow
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-lg');
+                } else {
+                    header.classList.remove('shadow-lg');
+                }
+
+                // Back to Top Button Visibility
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('opacity-100');
+                    backToTopButton.classList.remove('opacity-0');
+                } else {
+                    backToTopButton.classList.remove('opacity-100');
+                    backToTopButton.classList.add('opacity-0');
+                }
+            };
+
+            window.addEventListener('scroll', handleScrollEffects);
+            
+            // Back to Top functionality
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // 3. Scroll Reveal Animation (Intersection Observer)
+            const setupScrollReveal = () => {
+                const hiddenElements = document.querySelectorAll('.hidden-element');
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('fade-in');
+                            entry.target.classList.remove('hidden-element');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1, // Start animation when 10% of element is visible
+                    rootMargin: '0px 0px -50px 0px' // Slightly delay animation
+                });
+
+                hiddenElements.forEach(el => {
+                    observer.observe(el);
+                });
+            };
+
+            // Initialize all scroll-based visual effects
+            setupScrollReveal();
+
+            // Initial call to set header and button state if page is loaded scrolled
+            handleScrollEffects();
+        });
     </script>
 </body>
 </html>
